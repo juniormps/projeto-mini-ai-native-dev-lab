@@ -28,6 +28,18 @@ def init_db():
             """
         )
 
+        connection.execute(
+            """
+            CREATE TABLE IF NOT EXISTS events (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                source TEXT NOT NULL,
+                type TEXT NOT NULL,
+                value TEXT NOT NULL,
+                created_at TEXT NOT NULL
+            )
+            """
+        )
+
         count = connection.execute("SELECT COUNT(*) FROM demands").fetchone()[0]
 
         if count == 0:
@@ -124,6 +136,29 @@ def delete_demand(demand_id):
         connection.execute("DELETE FROM demands WHERE id = ?", (demand_id,))
         connection.commit()
 
+def create_event(source, type, value, created_at):
+    with get_connection() as connection:
+        connection.execute(
+            """
+            INSERT INTO events (source, type, value, created_at)
+            VALUES (?, ?, ?, ?)
+            """,
+            (source, type, value, created_at),
+        )
+        connection.commit()
+
+
+def list_events():
+    with get_connection() as connection:
+        rows = connection.execute(
+            """
+            SELECT id, source, type, value, created_at
+            FROM events
+            ORDER BY id DESC
+            """
+        ).fetchall()
+
+        return [dict(row) for row in rows]
 
 def get_summary():
     with get_connection() as connection:
