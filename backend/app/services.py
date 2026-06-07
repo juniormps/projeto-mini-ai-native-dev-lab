@@ -18,3 +18,12 @@ def build_summary():
 
 def list_all_demands():
     return list_demands()
+
+
+def convert_event_to_demand(event):
+    return {
+        "title": "Verificar evento recebido",
+        "category": event["type"],
+        "description": f"Evento recebido de {event['source']}",
+        "status": "pendente",
+    }
