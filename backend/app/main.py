@@ -9,6 +9,7 @@ from app.database import (
     update_demand,
     delete_demand,
     create_event,
+    list_events,
 )
 
 from app.schemas import DemandCreate, DemandUpdate, EventCreate
@@ -120,3 +121,8 @@ def create_event_route(event: EventCreate):
     )
 
     return {"message": "Evento processado com sucesso. Nova demanda criada."}
+
+
+@app.get("/events")
+def get_events():
+    return {"events": list_events()}
