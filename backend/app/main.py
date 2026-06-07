@@ -8,10 +8,11 @@ from app.database import (
     create_demand,
     update_demand,
     delete_demand,
+    create_event,
 )
 
-from app.schemas import DemandCreate, DemandUpdate
-from app.services import build_summary, normalize_status
+from app.schemas import DemandCreate, DemandUpdate, EventCreate
+from app.services import build_summary, normalize_status, convert_event_to_demand
 
 app = FastAPI(
     title="Painel de Demandas e Ações API",
@@ -90,3 +91,32 @@ def delete_demand_route(demand_id: int):
 
     delete_demand(demand_id)
     return {"message": "Demanda removida com sucesso."}
+
+
+@app.post("/event")
+def create_event_route(event: EventCreate):
+    create_event(
+        source=event.source,
+        type=event.type,
+        value=event.value,
+        created_at=event.created_at,
+    )
+
+    demand = convert_event_to_demand(
+        {
+            "source": event.source,
+            "type": event.type,
+            "value": event.value,
+        }
+    )
+
+    create_demand(
+        title=demand["title"],
+        category=demand["category"],
+        description=demand["description"],
+        status=demand["status"],
+        owner="Sistema",
+        created_at=event.created_at,
+    )
+
+    return {"message": "Evento processado com sucesso. Nova demanda criada."}
