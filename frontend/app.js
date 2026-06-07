@@ -3,6 +3,8 @@ const loadButton = document.getElementById("load-demands-btn");
 const statusBox = document.getElementById("status-box");
 const summaryBox = document.getElementById("summary-box");
 const demandList = document.getElementById("demand-list");
+const eventsStatusBox = document.getElementById("events-status-box");
+const eventList = document.getElementById("event-list");
 
 const API_BASE = "http://localhost:8000";
 
@@ -15,6 +17,12 @@ async function fetchDemands() {
 async function fetchSummary() {
   const response = await fetch(`${API_BASE}/summary`);
   return await response.json();
+}
+
+async function fetchEvents() {
+  const response = await fetch(`${API_BASE}/events`);
+  const data = await response.json();
+  return data.events;
 }
 
 function renderSummary(summary) {
@@ -49,17 +57,42 @@ function renderDemands(demands) {
   });
 }
 
+function renderEvents(events) {
+  eventList.innerHTML = "";
+
+  if (!events || events.length === 0) {
+    eventList.innerHTML = "<li>Nenhum evento encontrado.</li>";
+    return;
+  }
+
+  events.forEach((event) => {
+    const item = document.createElement("li");
+
+    item.innerHTML = `
+      <strong>${event.source}</strong><br>
+      Tipo: ${event.type}<br>
+      Valor: ${event.value}<br>
+      Data: ${event.created_at}
+    `;
+
+    eventList.appendChild(item);
+  });
+}
+
 async function loadAllData() {
   statusBox.textContent = "Carregando demandas...";
 
   try {
     const demands = await fetchDemands();
     const summary = await fetchSummary();
+    const events = await fetchEvents();
 
     renderDemands(demands);
     renderSummary(summary);
+    renderEvents(events);
 
     statusBox.textContent = `Foram carregadas ${demands.length} demandas.`;
+    eventsStatusBox.textContent = `Foram carregados ${events.length} eventos.`;
 
   } catch (error) {
     statusBox.textContent =
