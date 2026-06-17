@@ -1,6 +1,8 @@
-# Mini AI-Native Dev Lab
+# Gestão Comunitária Condominial
 
 Laboratório educacional **full stack** na sua máquina: página web, API REST, banco de dados e tudo orquestrado com Docker.
+
+O projeto desenvolvido trata-se de um sistema de gestão comunitária para condomínio, com controle de demandas, eventos e acompanhamento das atividades.
 
 ## O que você precisa
 

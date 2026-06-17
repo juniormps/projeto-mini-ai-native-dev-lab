@@ -16,7 +16,7 @@ from app.schemas import DemandCreate, DemandUpdate, EventCreate
 from app.services import build_summary, normalize_status, convert_event_to_demand
 
 app = FastAPI(
-    title="Painel de Demandas e Ações API",
+    title="Painel do Condomínio API",
     description="API da base comum do projeto de extensão",
     version="2.0.0",
 )
