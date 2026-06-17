@@ -9,80 +9,112 @@
 </head>
 
 <body>
-  <header class="container">
-    <h1>Gestão Comunitária de Condomínio</h1>
-    <p>
-      Sistema de gestão comunitária de condomínio: cadastro, acompanhamento e resumo de demandas.
-    </p>
+
+  <header>
+    <div class="container">
+      <h1>Gestão Comunitária de Condomínio</h1>
+      <p>
+        Sistema de gestão comunitária para cadastro, acompanhamento e monitoramento de demandas e eventos do condomínio.
+      </p>
+    </div>
   </header>
 
   <main class="container">
-    <section class="card">
-      <h2>Cadastrar demanda</h2>
-      <form id="demand-form">
-        <label for="title">Título</label>
-        <input id="title" name="title" type="text" required />
-        <label for="category">Categoria</label>
-        <select id="category" name="category" required>
-          <option value="Manutenção">Manutenção</option>
-          <option value="Segurança">Segurança</option>
-          <option value="Limpeza">Limpeza</option>
-          <option value="Administração">Administração</option>
-          <option value="Áreas Comuns">Áreas Comuns</option>
-          <option value="Eventos">Eventos</option>
-          <option value="Infraestrutura">Infraestrutura</option>
-          <option value="Comunidade">Comunidade</option>
-          <option value="Outros Assuntos">Outros Assuntos</option>
-        </select>
 
-        <label for="description">Descrição</label>
-        <textarea id="description" name="description" required></textarea>
+    <div class="dashboard">
 
-        <label for="status">Status</label>
-        <select id="status" name="status" required>
-          <option value="pendente">Pendente</option>
-          <option value="em andamento">Em andamento</option>
-          <option value="concluída">Concluída</option>
-        </select>
+      <section class="card">
+        <h2>Cadastrar Demanda</h2>
 
-        <label for="owner">Responsável</label>
-        <input id="owner" name="owner" type="text" required />
+        <form id="demand-form">
 
-        <label for="created_at">Data</label>
-        <input id="created_at" name="created_at" type="date" required />
-        <button type="submit">Salvar demanda</button>
-      </form>
-    </section>
-    <section class="card">
-      <h2>Resumo</h2>
-      <div id="summary-box">Carregue os dados para visualizar o resumo.</div>
-    </section>
-    <section class="card">
-      <h2>Demandas cadastradas</h2>
-      <button id="load-demands-btn" type="button">Carregar demandas</button>
-      <div id="status-box">Aguardando carregamento...</div>
-      <ul id="demand-list"></ul>
-    </section>
-    <section class="card">
-      <h2>Eventos Recebidos</h2>
+          <label for="title">Título</label>
+          <input id="title" name="title" type="text" required />
 
-      <button id="load-events-btn" type="button">
-        Carregar eventos
-      </button>
+          <label for="category">Categoria</label>
+          <select id="category" name="category" required>
+            <option value="Manutenção">Manutenção</option>
+            <option value="Segurança">Segurança</option>
+            <option value="Limpeza">Limpeza</option>
+            <option value="Administração">Administração</option>
+            <option value="Áreas Comuns">Áreas Comuns</option>
+            <option value="Eventos">Eventos</option>
+            <option value="Infraestrutura">Infraestrutura</option>
+            <option value="Comunidade">Comunidade</option>
+            <option value="Outros Assuntos">Outros Assuntos</option>
+          </select>
 
-      <div id="events-status-box">
-        Aguardando carregamento...
-      </div>
+          <label for="description">Descrição</label>
+          <textarea id="description" name="description" required></textarea>
 
-      <ul id="event-list"></ul>
-    </section>
+          <label for="status">Status</label>
+          <select id="status" name="status" required>
+            <option value="pendente">Pendente</option>
+            <option value="em andamento">Em andamento</option>
+            <option value="concluída">Concluída</option>
+          </select>
+
+          <label for="owner">Responsável</label>
+          <input id="owner" name="owner" type="text" required />
+
+          <label for="created_at">Data</label>
+          <input id="created_at" name="created_at" type="date" required />
+
+          <button type="submit">
+            Salvar Demanda
+          </button>
+
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Resumo Geral</h2>
+
+        <div id="summary-box">
+          Carregue os dados para visualizar o resumo.
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Demandas Cadastradas</h2>
+
+        <button id="load-demands-btn" type="button">
+          Carregar Demandas
+        </button>
+
+        <div id="status-box">
+          Aguardando carregamento...
+        </div>
+
+        <ul id="demand-list"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Eventos Recebidos</h2>
+
+        <button id="load-events-btn" type="button">
+          Carregar Eventos
+        </button>
+
+        <div id="events-status-box">
+          Aguardando carregamento...
+        </div>
+
+        <ul id="event-list"></ul>
+      </section>
+
+    </div>
+
   </main>
 
-  <footer class="container">
-    <p>ETAPA 3 - Culminancia / Produto Final</p>
+  <footer>
+    <div class="container">
+      <p>ETAPA 3 - Culminância / Produto Final</p>
+    </div>
   </footer>
 
   <script src="./app.js"></script>
+
 </body>
 
 </html>
